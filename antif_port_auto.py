@@ -34,7 +34,7 @@ def risk_report_all_sen():
 #              'a')
     # 固定参数
     cnt = 0
-    var = 100000
+    var = 10
     # 可变参数
     name_no = 0
     scene_no = 0
