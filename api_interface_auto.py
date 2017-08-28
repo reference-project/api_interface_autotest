@@ -54,6 +54,15 @@ def risk_report_all_sen():
     app_id = 'com.auto.test'
     app_key = 'MxD8CLDRbhQvnT4LentPaVpnY/FmRwq7u+9lLrvTdi9LLse70XqFMY4i9L6/LlHb'
 
+    # 参数化场景场景与表示一致
+    op_type_tmp = ['LOGIN', 'REGISTER', 'CASH_GIFT', 'WIN_AWARD', 'DAILY_TURNTABLE', 'CREATE_GROUP']
+    scene_tmp = ['HT10001', 'HT20001', 'HT70001', 'HT80001', 'HT90001', 'HT100001']
+
+    tmp_device_info = ['Xiaomi_MI5', 'HUAWEI_NXT_AL10', 'Nexus_5', 'Coolpad_T1', 'HONOR_DUK_AL20', 'Redmi_Note_4']
+
+    # 版本，默认为01
+    # version = '01'
+    version = '02'
 
     for k in range(0, var):
         # 用户名称、电话号码
@@ -73,10 +82,7 @@ def risk_report_all_sen():
         user_id = phone[name_no]
         user_name = phone[name_no]
 
-        # 参数化场景场景与表示一致
-        op_type_tmp = ['LOGIN', 'REGISTER', 'CASH_GIFT', 'WIN_AWARD', 'DAILY_TURNTABLE', 'CREATE_GROUP']
         op_type = op_type_tmp[scene_no]
-        scene_tmp = ['HT10001', 'HT20001', 'HT70001', 'HT80001', 'HT90001', 'HT100001']
         scene = scene_tmp[scene_no]
 
         # 操作标识
@@ -84,13 +90,8 @@ def risk_report_all_sen():
         op_id = '1d01cc313cc6449e9d6fdce5g84' + tmp_op_id
 
         # 设备指纹
-        tmp_device_info = ['Xiaomi_MI5', 'HUAWEI_NXT_AL10', 'Nexus_5', 'Coolpad_T1', 'HONOR_DUK_AL20', 'Redmi_Note_4']
         dev = tmp_device_info[dev_no]
         device_info = readxml(dev)
-
-        # 版本，默认为01
-        version = '01'
-        # version = '02'
 
         # 接口相关参数
         params = {
