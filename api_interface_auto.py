@@ -34,13 +34,13 @@ def risk_report_all_sen():
     # url_risk = 'http://192.168.1.113/api/risk'
     # url_report = 'http://192.168.1.113/api/logreport/businesslog'
     # 测试地址
-    # url_monitor = 'http://192.168.1.112:6080/api/emulator'
-    # url_risk = 'http://192.168.1.112:6080/api/risk'
-    # url_report = 'http://192.168.1.112:6080/api/logreport/businesslog'
+    url_monitor = 'http://192.168.1.112:6080/api/emulator'
+    url_risk = 'http://192.168.1.112:6080/api/risk'
+    url_report = 'http://192.168.1.112:6080/api/logreport/businesslog'
     # 阿里云nginx地址
-    url_monitor = 'http://ifds1.trusfort.com/api/emulator'
-    url_risk = 'http://ifds1.trusfort.com/api/risk'
-    url_report = 'http://ifds1.trusfort.com/api/logreport/businesslog'
+    # url_monitor = 'http://ifds1.trusfort.com/api/emulator'
+    # url_risk = 'http://ifds1.trusfort.com/api/risk'
+    # url_report = 'http://ifds1.trusfort.com/api/logreport/businesslog'
     # 阿里云Trusfort5地址
     # url_monitor = 'http://ifds1.trusfort.com:8080/api/emulator'
     # url_risk = 'http://ifds1.trusfort.com:8080/api/risk'
