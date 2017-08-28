@@ -1,20 +1,14 @@
-#!/usr/bin/env python
-# encoding=utf8
+# coding=utf-8
 import hashlib
 import hmac
 import json
 import random
 import urllib2
-from datetime import datetime
 from xml.dom import minidom
 import time as t
 
 import time
 from time import ctime
-
-'''
-自动化测试脚本
-'''
 
 # 时间参数
 time = str(int(t.time()))  # 时间戳
@@ -28,38 +22,47 @@ def readxml(node):
 
 
 def risk_report_all_sen():
-    print "START TIME IS: %s" % ctime()
-    # 固定参数
+    print "==========开始运行时间: %s" % ctime()
+    # 计数参数
     cnt = 0
+    # 循环次数参数
     var = 1
-    # 可变参数
-    name_no = 0
-    scene_no = 0
-    dev_no = 0
-    # 定义循环次数
+    # 开发地址
+    # url_monitor = 'http://192.168.1.113/api/emulator'
+    # url_risk = 'http://192.168.1.113/api/risk'
+    # url_report = 'http://192.168.1.113/api/logreport/businesslog'
+    # 测试地址
+    url_monitor = 'http://192.168.1.112:6080/api/emulator'
+    url_risk = 'http://192.168.1.112:6080/api/risk'
+    url_report = 'http://192.168.1.112:6080/api/logreport/businesslog'
+    # 阿里云nginx地址
+    # url_monitor = 'http://ifds1.trusfort.com/api/emulator'
+    # url_risk = 'http://ifds1.trusfort.com/api/risk'
+    # url_report = 'http://ifds1.trusfort.com/api/logreport/businesslog'
+    # 阿里云Trusfort5地址
+    # url_monitor = 'http://ifds1.trusfort.com:8080/api/emulator'
+    # url_risk = 'http://ifds1.trusfort.com:8080/api/risk'
+    # url_report = 'http://ifds1.trusfort.com:8080/api/logreport/businesslog'
+    # 阿里云Trusfort6地址
+    # url_monitor = 'http://ifds2.trusfort.com:8080/api/emulator'
+    # url_risk = 'http://ifds2.trusfort.com:8080/api/risk'
+    # url_report = 'http://ifds2.trusfort.com:8080/api/logreport/businesslog'
+    # 默认app
+    app_id = 'com.example.demo'
+    app_key = 'f394e5f5887b4dc483fb69a54f561d8f'
+    # 自动化测试app
+    app_id = 'com.auto.test'
+    app_key = 'MxD8CLDRbhQvnT4LentPaVpnY/FmRwq7u+9lLrvTdi9LLse70XqFMY4i9L6/LlHb'
+
+
     for k in range(0, var):
-
+        # 用户名称、电话号码
         name_no = random.randint(0, 100)
+        # 设备型号
         dev_no = random.randint(0, 5)
+        # 场景标识
         scene_no = random.randint(0, 5)
-
         cnt += 1
-        # 测试地址配置
-        # url_risk = 'http://192.168.1.112:6080/api/risk'
-        # url_report = 'http://192.168.1.112:6080/api/logreport/businesslog'
-        # print url_risk
-        # print url_report
-        # 阿里云地址配置
-        url_risk = 'http://ifds1.trusfort.com:8080/api/risk'
-        url_report = 'http://ifds1.trusfort.com:8080/api/logreport/businesslog'
-
-        # 生成app_id，这个参数一般是固定的，如果APPID改变appkey也改变
-        app_id = 'com.example.demo'
-        app_key = 'f394e5f5887b4dc483fb69a54f561d8f'
-
-        # 测试使用的app_id app_key
-        # app_id = 'com.huang.shuai'
-        # app_key = 'VzqSPL0oll8IoG/4CkC/mN8AE6DlMr/nqf/5fixolMFQLpTNW3GSGT2pZNtHcaF7'
 
         # 生成手机号码，用于user_id  user_name
         phone = []
@@ -135,12 +138,9 @@ def risk_report_all_sen():
         print cnt
         if "OK" and "200" in risk_response_data:
             print risk_response_data
-            #             f.write(risk_response_data)
-            #             f.write("\n********************RISK PASS********************")
             print "********************RISK PASS********************"
         else:
             print risk_response_data
-            # f.write("\n********************RISK FAILED********************")
             print "********************RISK FAILED********************"
 
         t.sleep(10)
@@ -153,14 +153,11 @@ def risk_report_all_sen():
         # print report_response_data
         # 添加检查点，请求成功返回的json中包含："info":"OK"  "status":"200"
         if "OK" and "200" in risk_response_data:
-            #             f.write("\n********************REPORT PASS********************")
             print "********************REPORT PASS********************"
         else:
-            #             f.write("\n********************REPORT FAILED********************")
             print "********************REPORT FAILED********************"
-            # t.sleep(1)
 
-    print "END TIME IS: %s" % ctime()
+    print "==========结束运行时间: %s" % ctime()
 
 
 if __name__ == '__main__':
