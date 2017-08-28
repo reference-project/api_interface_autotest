@@ -29,12 +29,9 @@ def readxml(node):
 
 def risk_report_all_sen():
     print "START TIME IS: %s" % ctime()
-    # 准备写入结果文件
-#     f = open('D:/WorkSpace/PyCharm/Trusfort/automation/TestResult/AutoTestResult_' + str(datetime.now().date()) + '.txt',
-#              'a')
     # 固定参数
     cnt = 0
-    var = 10
+    var = 1
     # 可变参数
     name_no = 0
     scene_no = 0
@@ -48,13 +45,13 @@ def risk_report_all_sen():
 
         cnt += 1
         # 测试地址配置
-        url_risk = 'http://192.168.1.113/api/risk'
-        url_report = 'http://192.168.1.113/api/logreport/businesslog'
-        print url_risk
-        print url_report
+        # url_risk = 'http://192.168.1.112:6080/api/risk'
+        # url_report = 'http://192.168.1.112:6080/api/logreport/businesslog'
+        # print url_risk
+        # print url_report
         # 阿里云地址配置
-        # url_risk = 'http://ifds1.trusfort.com/api/risk'
-        # url_report = 'http://ifds1.trusfort.com/api/logreport/businesslog'
+        url_risk = 'http://ifds1.trusfort.com:8080/api/risk'
+        url_report = 'http://ifds1.trusfort.com:8080/api/logreport/businesslog'
 
         # 生成app_id，这个参数一般是固定的，如果APPID改变appkey也改变
         app_id = 'com.example.demo'
@@ -116,7 +113,6 @@ def risk_report_all_sen():
         print"op_id: " + op_id
         print"version: " + version
 
-
         param_values = ''
         for k in sorted(params.keys()):
             param_values = '%s%s' % (param_values, params[k])
@@ -127,7 +123,8 @@ def risk_report_all_sen():
 
         # 风控事件发送post请求
         url = url_risk
-        headers = {'Content-Type': 'application/json'}
+        headers = {'Content-Type': 'application/json', 'real-ip': '192.1.1.2'}
+        # headers = {'Content-Type': 'application/json'}
         risk_request = urllib2.Request(url=url, headers=headers, data=json.dumps(params))
         # 获取返回json
         risk_response = urllib2.urlopen(risk_request)
@@ -138,33 +135,33 @@ def risk_report_all_sen():
         print cnt
         if "OK" and "200" in risk_response_data:
             print risk_response_data
-#             f.write(risk_response_data)
-#             f.write("\n********************RISK PASS********************")
+            #             f.write(risk_response_data)
+            #             f.write("\n********************RISK PASS********************")
             print "********************RISK PASS********************"
         else:
             print risk_response_data
             # f.write("\n********************RISK FAILED********************")
             print "********************RISK FAILED********************"
-        
-        
+
         t.sleep(10)
         # 上报事件
         url1 = url_report
-        headers = {'Content-Type': 'application/json'}
+        headers = {'Content-Type': 'application/json', 'real-ip': '192.1.1.2'}
         report_request = urllib2.Request(url=url1, headers=headers, data=json.dumps(params))
         report_response = urllib2.urlopen(report_request)
         report_response_data = report_response.read()
         # print report_response_data
         # 添加检查点，请求成功返回的json中包含："info":"OK"  "status":"200"
         if "OK" and "200" in risk_response_data:
-#             f.write("\n********************REPORT PASS********************")
+            #             f.write("\n********************REPORT PASS********************")
             print "********************REPORT PASS********************"
         else:
-#             f.write("\n********************REPORT FAILED********************")
+            #             f.write("\n********************REPORT FAILED********************")
             print "********************REPORT FAILED********************"
-        # t.sleep(1)
+            # t.sleep(1)
 
     print "END TIME IS: %s" % ctime()
+
 
 if __name__ == '__main__':
     risk_report_all_sen()
