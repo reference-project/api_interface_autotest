@@ -26,9 +26,9 @@ def risk_report_all_sen():
     # 计数参数
     cnt = 0
     # 循环次数参数
-    var = 10
+    var = 1
     # 等待时间，每个接口结束等待一次
-    skd = 1
+    skd = 0
     # 开发地址
     # url_monitor = 'http://192.168.1.113/api/emulator'
     # url_risk = 'http://192.168.1.113/api/risk'
@@ -38,9 +38,9 @@ def risk_report_all_sen():
     # url_risk = 'http://192.168.1.112:6080/api/risk'
     # url_report = 'http://192.168.1.112:6080/api/logreport/businesslog'
     # 阿里云nginx地址
-    url_monitor = 'http://ifds1.trusfort.com/api/emulator'
-    url_risk = 'http://ifds1.trusfort.com/api/risk'
-    url_report = 'http://ifds1.trusfort.com/api/logreport/businesslog'
+    # url_monitor = 'http://ifds1.trusfort.com/api/emulator'
+    # url_risk = 'http://ifds1.trusfort.com/api/risk'
+    # url_report = 'http://ifds1.trusfort.com/api/logreport/businesslog'
     # 阿里云Trusfort5地址
     # url_monitor = 'http://ifds1.trusfort.com:8080/api/emulator'
     # url_risk = 'http://ifds1.trusfort.com:8080/api/risk'
@@ -136,6 +136,7 @@ def risk_report_all_sen():
         # 模拟器识别发送
         url = url_monitor
         headers = {'Content-Type': 'application/json', 'real-ip': ipconf}
+        # headers = {'Content-Type': 'application/json'}
         monitor_request = urllib2.Request(url=url, headers=headers, data=json.dumps(params))
         monitor_response = urllib2.urlopen(monitor_request)
         monitor_response_data = monitor_response.read()
@@ -150,6 +151,7 @@ def risk_report_all_sen():
         # 风控事件发送post请求
         url = url_risk
         headers = {'Content-Type': 'application/json', 'real-ip': ipconf}
+        # headers = {'Content-Type': 'application/json'}
         risk_request = urllib2.Request(url=url, headers=headers, data=json.dumps(params))
         risk_response = urllib2.urlopen(risk_request)
         risk_response_data = risk_response.read()
@@ -164,6 +166,7 @@ def risk_report_all_sen():
         # 上报事件
         url1 = url_report
         headers = {'Content-Type': 'application/json', 'real-ip': ipconf}
+        # headers = {'Content-Type': 'application/json'}
         report_request = urllib2.Request(url=url1, headers=headers, data=json.dumps(params))
         report_response = urllib2.urlopen(report_request)
         report_response_data = report_response.read()

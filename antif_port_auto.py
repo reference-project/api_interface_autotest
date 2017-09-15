@@ -45,13 +45,13 @@ def risk_report_all_sen():
 
         cnt += 1
         # 测试地址配置
-        # url_risk = 'http://192.168.1.112:6080/api/risk'
-        # url_report = 'http://192.168.1.112:6080/api/logreport/businesslog'
+        url_risk = 'http://192.168.1.112:6080/api/risk'
+        url_report = 'http://192.168.1.112:6080/api/logreport/businesslog'
         # print url_risk
         # print url_report
         # 阿里云地址配置
-        url_risk = 'http://ifds1.trusfort.com:8080/api/risk'
-        url_report = 'http://ifds1.trusfort.com:8080/api/logreport/businesslog'
+        # url_risk = 'http://ifds1.trusfort.com:8080/api/risk'
+        # url_report = 'http://ifds1.trusfort.com:8080/api/logreport/businesslog'
 
         # 生成app_id，这个参数一般是固定的，如果APPID改变appkey也改变
         app_id = 'com.example.demo'
